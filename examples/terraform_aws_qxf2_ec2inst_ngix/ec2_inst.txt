@@ -1,0 +1,1 @@
+Deploying EC2 instance along with webserver like nginx using Terraform
