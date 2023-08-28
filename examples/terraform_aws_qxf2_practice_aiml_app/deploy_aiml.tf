@@ -34,7 +34,7 @@ resource "aws_security_group" "aiml_security_group" {
   }
 }
 
-resource "aws_instance" "example_instance" {
+resource "aws_instance" "aiml_instance" {
   ami           = "ami-053b0d53c279acc90"
   instance_type = "t3.micro"
   key_name      = "temporary_key"
