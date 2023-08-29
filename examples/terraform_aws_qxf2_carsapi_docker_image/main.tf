@@ -1,20 +1,6 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.16"
-    }
-  }
-
-  required_version = ">= 1.2.0"
-}
-
-provider "aws" {
-  region  = "ap-south-1"
-}
-
+# Create a Security Group for EC2 instance
 resource "aws_security_group" "terraform_sg" {
-  name        = "allow_tls"
+  name        = "tls_cars"
   description = "Allow TLS inbound traffic"
 
   ingress {
@@ -66,10 +52,16 @@ resource "aws_security_group" "terraform_sg" {
   }
 }
 
+resource "aws_key_pair" "ssh-key" {
+  key_name   = "ssh-key"
+  public_key = file(var.ssh_public_key)
+}
+
+# Create an EC2 instance 
 resource "aws_instance" "app_server" {
   ami           = "ami-0f5ee92e2d63afc18"
   instance_type = "t2.micro"
-  
+  key_name = aws_key_pair.ssh-key.key_name
   vpc_security_group_ids = [aws_security_group.terraform_sg.id]
 
   tags = {
@@ -90,5 +82,3 @@ resource "aws_instance" "app_server" {
               sudo docker run -p 5000:5000 cars-api
               EOF
 }
-
-
