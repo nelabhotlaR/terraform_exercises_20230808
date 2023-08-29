@@ -79,6 +79,6 @@ resource "aws_instance" "app_server" {
 
               cd cars-api/
               sudo docker build -t cars-api .
-              sudo docker run -p 5000:5000 cars-api
+              sudo docker run --name cars-api -p 5000:5000 cars-api
               EOF
 }
