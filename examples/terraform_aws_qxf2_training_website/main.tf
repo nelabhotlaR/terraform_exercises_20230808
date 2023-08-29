@@ -19,8 +19,6 @@ resource "aws_instance" "training_wedsite_instance" {
       "sudo apt-get install -y git",
       "sleep 2m",
       "git clone https://github.com/qxf2/training-website.git",
-      "sudo apt-get install -y python3-pip",
-      "sudo apt install -y python3-virtualenv",
       "cd ~/training-website",
       "echo Creating a new virtual enviroment",
       "virtualenv venv-tsqa",
