@@ -1,0 +1,7 @@
+{
+  "function_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "url_filtering_lambda"
+  }
+}
