@@ -59,9 +59,9 @@ resource "aws_key_pair" "ssh-key" {
 
 # Create an EC2 instance 
 resource "aws_instance" "app_server" {
-  ami           = "ami-0f5ee92e2d63afc18"
-  instance_type = "t2.micro"
-  key_name = aws_key_pair.ssh-key.key_name
+  ami                    = "ami-053b0d53c279acc90"
+  instance_type          = "t2.micro"
+  key_name               = aws_key_pair.ssh-key.key_name
   vpc_security_group_ids = [aws_security_group.terraform_sg.id]
 
   tags = {
