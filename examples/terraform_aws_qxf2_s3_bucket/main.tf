@@ -16,8 +16,8 @@ resource "aws_s3_bucket_versioning" "versioning_test_bucket" {
 
 # Add files/objects into the bucket
 resource "aws_s3_object" "objects" {
-  for_each = fileset("path-to-objects-directory/", "*")
+  for_each = fileset("${var.OBJECTS_PATH}", "*")
   bucket = aws_s3_bucket.bucket.id
   key    = each.value
-  source = "path-to-objects-directory/${each.value}"
+  source = "${var.OBJECTS_PATH}/${each.value}"
 }
