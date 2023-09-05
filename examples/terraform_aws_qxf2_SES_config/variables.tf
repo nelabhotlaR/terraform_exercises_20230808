@@ -21,3 +21,7 @@ variable "name" {
   default = "test-resource-SES"
 }
 
+variable "rule_set_name" {
+  type    = string
+  default = "default-rule-set"
+}

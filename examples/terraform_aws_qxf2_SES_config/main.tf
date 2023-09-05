@@ -25,4 +25,15 @@ resource "aws_ses_identity_policy" "example" {
 }
 
 
+resource "aws_ses_receipt_rule_set" "rule_set" {
+  rule_set_name = var.rule_set_name
+}
+
+resource "aws_ses_receipt_rule" "rule" {
+  name          = "all"
+  rule_set_name = aws_ses_receipt_rule_set.rule_set.rule_set_name
+  recipients    = ["drishya.tm@qxf2.com"]
+  enabled       = true
+  scan_enabled  = false
+}
 
