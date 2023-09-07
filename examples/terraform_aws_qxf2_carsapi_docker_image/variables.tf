@@ -4,7 +4,12 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-#variable "profile_name" {
- # type        = string
-  #description = "The name of the AWS profile to use"
-#}
+variable "profile_name" {
+
+}
+
+variable "ssh_public_key" {
+  type        = string
+  description = "The path of the SSH public key file"
+  default     = "~/.ssh/id_rsa.pub"
+}
