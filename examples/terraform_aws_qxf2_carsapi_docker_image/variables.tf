@@ -4,9 +4,9 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-variable "profile_name" {
+/* variable "profile_name" {
 
-}
+} */
 
 variable "ssh_public_key" {
   type        = string
