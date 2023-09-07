@@ -3,12 +3,12 @@ variable "aws_region" {
   type        = string
   default     = "us-east-1"
 }
-
+/*
 variable "profile_name" {
   type        = string
   description = "The name of the AWS profile to use"
   default     = "personal"
-}
+}*/
 
 variable "ssh_public_key" {
   type        = string
