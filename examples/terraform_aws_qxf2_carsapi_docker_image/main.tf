@@ -54,7 +54,7 @@ resource "aws_security_group" "terraform_sg" {
 
 resource "aws_key_pair" "ssh-key" {
   key_name   = "ssh-key"
-  public_key = file(var.ssh_public_key)
+  public_key = var.ssh_public_key
 }
 
 # Create an EC2 instance 
