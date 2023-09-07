@@ -1,0 +1,48 @@
+name: 'Terraform'
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: development
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v3
+      with:
+        role-to-assume: arn:aws:iam::120666943157:role/github_workflow_terraform
+        aws-region: us-east-1
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.5.6
+
+    - name: Terraform Init
+      run: cd examples/terraform_aws_qxf2_carsapi_docker_image && terraform init
+
+    - name: Terraform Format
+      run: cd examples/terraform_aws_qxf2_carsapi_docker_image && terraform fmt -check
+
+    - name: Terraform Plan
+      run: cd examples/terraform_aws_qxf2_carsapi_docker_image && terraform plan -input=false
+
+      # On push to "main", deploy the Terraform infrastructure
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: cd examples/terraform_aws_qxf2_carsapi_docker_image && terraform apply -auto-approve -input=false
