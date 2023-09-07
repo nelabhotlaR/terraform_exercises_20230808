@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - name: Configure aws credentials
-      uses: aws-actions/configure-aws-credentials@v2
+      uses: aws-actions/configure-aws-credentials@v3
       with:
         role-to-assume: arn:aws:iam::120666943157:role/github_workflow_terraform
         aws-region: us-east-1
