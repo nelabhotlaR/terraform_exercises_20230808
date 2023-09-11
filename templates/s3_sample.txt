@@ -1,0 +1,2 @@
+A sample text file to be uploaded to s3 bucket, created using terraform!
+
