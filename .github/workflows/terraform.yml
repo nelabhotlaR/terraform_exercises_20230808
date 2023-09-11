@@ -4,6 +4,8 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
+    paths:
+      - 'examples/terraform_aws_qxf2_carsapi_docker_image/**'
 
 permissions:
   id-token: write

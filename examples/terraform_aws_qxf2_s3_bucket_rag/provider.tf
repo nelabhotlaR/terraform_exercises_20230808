@@ -12,7 +12,4 @@ terraform {
   }
 
 # Include the AWS provider
-provider "aws" {
-  region = "us-east-1"  # Change this to your desired region
-  #profile = "personal"
-}
+provider "aws" {}
