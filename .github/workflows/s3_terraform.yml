@@ -38,10 +38,9 @@ jobs:
       id: changes
       with: 
           filters: |
-            examples:
-              - 'terraform_aws_qxf2_s3_bucket_rag/**'
-            .github:
-              - 'workflows/**'
+            src:
+              - 'examples/terraform_aws_qxf2_s3_bucket_rag/**'
+              - '.github/workflows/**'
 
     - name: Terraform Init
       if: steps.changes.outputs.terraform_aws_qxf2_s3_bucket_rag=='true' || steps.changes.outputs.workflows=='true'
