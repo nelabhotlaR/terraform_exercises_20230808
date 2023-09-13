@@ -1,7 +1,7 @@
 variable "bucket_name" {
   description = "The name of the S3 bucket"
   type        = string
-  default = "Qxf2_bucket"
+  default = "qxf2-bucket"
 }
 
 variable "github_repo" {
