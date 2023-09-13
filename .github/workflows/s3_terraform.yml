@@ -44,7 +44,7 @@ jobs:
 
     - name: Terraform Init
       if: steps.changes.outputs.src=='true'
-      run: cd examples/terraform_aws_qxf2_s3_bucket_rag && terraform init -upgrade
+      run: cd examples/terraform_aws_qxf2_s3_bucket_rag && terraform init
 
     - name: Terraform Validate
       run: cd examples/terraform_aws_qxf2_s3_bucket_rag && terraform validate -no-color
@@ -54,5 +54,5 @@ jobs:
 
       # On push to "main", deploy the Terraform infrastructure
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/*' && github.event_name == 'push'
       run: cd examples/terraform_aws_qxf2_s3_bucket_rag && terraform apply -auto-approve -input=false
