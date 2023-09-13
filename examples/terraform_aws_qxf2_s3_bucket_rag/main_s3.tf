@@ -14,6 +14,15 @@ resource "aws_s3_bucket_versioning" "versioning_test_bucket" {
 resource "aws_s3_bucket_acl" "acl_test_bucket" {
     bucket = aws_s3_bucket.Qxf2_bucket.id
     acl = "private"
+    depends_on = [ aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership ]
+}
+
+# Resource to avoid error "AccessControlListNotSupported: The bucket does not allow ACLs"
+resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
+  bucket = aws_s3_bucket.Qxf2_bucket.id
+  rule {
+    object_ownership = "ObjectWriter"
+  }
 }
 
 # Configure the GitHub repository as a data source
