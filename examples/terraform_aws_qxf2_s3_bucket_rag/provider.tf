@@ -6,10 +6,11 @@ terraform {
     }
     github = {
       source  = "integrations/github"
-      version = "~> 4.4.0"
+      version =  "5.36.0"
     }
     }
   }
 
 # Include the AWS provider
 provider "aws" {}
+provider "github" {}
