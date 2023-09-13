@@ -2,7 +2,7 @@ name: 's3 Terraform'
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "*" ]
   pull_request:
 
 permissions:
@@ -44,7 +44,7 @@ jobs:
 
     - name: Terraform Init
       if: steps.changes.outputs.src=='true'
-      run: cd examples/terraform_aws_qxf2_s3_bucket_rag && terraform init
+      run: cd examples/terraform_aws_qxf2_s3_bucket_rag && terraform init -upgrade
 
     - name: Terraform Validate
       run: cd examples/terraform_aws_qxf2_s3_bucket_rag && terraform validate -no-color
