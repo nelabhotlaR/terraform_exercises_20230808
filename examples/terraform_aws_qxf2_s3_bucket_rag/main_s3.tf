@@ -32,7 +32,7 @@ data "github_repository" "repo" {
 
 # Define the URL to fetch the file from GitHub
 locals {
-  github_file_url = "https://raw.githubusercontent.com/${data.github_repository.repo.full_name}/blob/main/${var.github_file_path}"
+  github_file_url = "https://raw.githubusercontent.com/${data.github_repository.repo.full_name}/main/${var.github_file_path}"
 }
 
 # Create an S3 object to upload the file
