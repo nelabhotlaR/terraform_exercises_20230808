@@ -2,7 +2,7 @@ name: 's3 Terraform'
 
 on:
   push:
-    branches: [ "*" ]
+    branches: [ "raghava-s3-terraform" ]
   pull_request:
 
 permissions:
@@ -54,5 +54,5 @@ jobs:
 
       # On push to "main", deploy the Terraform infrastructure
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/*' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/raghava-s3-terraform' && github.event_name == 'push'
       run: cd examples/terraform_aws_qxf2_s3_bucket_rag && terraform apply -auto-approve -input=false
