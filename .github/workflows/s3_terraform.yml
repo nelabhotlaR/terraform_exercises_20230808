@@ -43,7 +43,7 @@ jobs:
               - '.github/workflows/**'
 
     - name: Terraform Init
-      if: steps.changes.outputs.terraform_aws_qxf2_s3_bucket_rag=='true' || steps.changes.outputs.workflows=='true'
+      if: steps.changes.outputs.src=='true'
       run: cd examples/terraform_aws_qxf2_s3_bucket_rag && terraform init
 
     - name: Terraform Validate
