@@ -1,7 +1,9 @@
 name: 's3 Terraform'
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
 
 permissions:
   id-token: write
