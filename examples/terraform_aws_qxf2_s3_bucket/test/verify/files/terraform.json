@@ -1,0 +1,22 @@
+{
+  "s3_bucket_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:s3:::qxf2-terraform-test-bucket"
+  },
+  "s3_bucket_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "qxf2-terraform-test-bucket"
+  },
+  "s3_bucket_policy": {
+    "sensitive": false,
+    "type": "string",
+    "value": ""
+  },
+  "s3_bucket_region": {
+    "sensitive": false,
+    "type": "string",
+    "value": "ap-south-1"
+  }
+}
