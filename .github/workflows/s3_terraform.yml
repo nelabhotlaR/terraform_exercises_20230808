@@ -41,6 +41,7 @@ jobs:
             src:
               - 'examples/terraform_aws_qxf2_s3_bucket_rag/**'
               - '.github/workflows/**'
+              - 'templates/**'
 
     - name: Terraform Init
       if: steps.changes.outputs.src=='true'
