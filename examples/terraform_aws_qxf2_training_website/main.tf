@@ -11,6 +11,7 @@ resource "aws_instance" "training_wedsite_instance" {
   connection {
     host=aws_instance.training_wedsite_instance.public_ip
     user = "ubuntu"
+    agent = false
   }
   provisioner "remote-exec" {
     /*connection {
