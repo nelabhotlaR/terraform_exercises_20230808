@@ -12,5 +12,5 @@ terraform {
 # Define the AWS provider
 provider "aws" {
   region = var.region 
-  profile = var.profile
+  #profile = var.profile
 }

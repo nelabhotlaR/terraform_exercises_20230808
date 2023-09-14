@@ -10,7 +10,7 @@ variable "training_website_ec2_inst_type" {
     type = string
     default = "t3.micro"
 }
-
+/*
 # PEM file name to ssh into instance.
 variable "training_website_key_pair" {
     description = "defining the PEM key file name to ssh into ec2 instance"
@@ -19,12 +19,13 @@ variable "training_website_key_pair" {
 }
 
 variable "profile" {
-    default = "default"
+    default = "personal"
     type = string
-  
+
 }
+
 # to declare private key path
 variable "private_key_path" {
   type        = string
   description = "Path to the PEM private key file"
-}
+}*/
