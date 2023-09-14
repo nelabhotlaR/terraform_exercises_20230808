@@ -14,12 +14,19 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    environment: development
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY_NAME }}
+      
     defaults:
-      run:
+      run:  
         shell: bash
 
     steps:
+    - name: set the key
+      run: |  
+        echo ${{ secrets.SSH_PRIVATE_KEY }} | base64 --decode > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+
     - name: Configure aws credentials
       uses: aws-actions/configure-aws-credentials@v3
       with:

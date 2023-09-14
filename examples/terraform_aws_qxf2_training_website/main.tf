@@ -11,6 +11,7 @@ resource "aws_instance" "training_wedsite_instance" {
   connection {
     host=aws_instance.training_wedsite_instance.public_ip
     user = "ubuntu"
+    private_key = file("~/.ssh/id_rsa")
     agent = false
   }
   provisioner "remote-exec" {
