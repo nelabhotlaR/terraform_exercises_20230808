@@ -8,18 +8,12 @@ resource "aws_instance" "training_wedsite_instance" {
     tags = {
         "Name"  : "training_website-EC2instance"
     }
-  connection {
-    host=aws_instance.training_wedsite_instance.public_ip
-    user = "ubuntu"
-    private_key = file("~/.ssh/id_rsa")
-    agent = false
-  }
   provisioner "remote-exec" {
-    /*connection {
+    connection {
       host        = aws_instance.training_wedsite_instance.public_ip
       user        = "ubuntu"
       private_key = file(var.private_key_path)
-    }*/
+    }
     inline = [ 
      # training website deployment
       "echo starting setup for the app",
