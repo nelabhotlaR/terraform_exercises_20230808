@@ -19,6 +19,9 @@ jobs:
     steps:
     - name: Create SSH Directory
       run: mkdir -p ~/.ssh
+
+    - name: setup the public key
+      run:  echo "${{ secrets.PUBLIC_KEY_NAME}}" > ~/.ssh/terraform.pub && chmod 600 ~/.ssh/terraform.pub
   
     - name: setup the SSH key
       run:  echo "${{ secrets.PRIVATE_KEY_NAME }}" > ~/.ssh/terraform && chmod 600 ~/.ssh/terraform
