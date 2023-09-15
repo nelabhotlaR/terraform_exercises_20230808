@@ -37,7 +37,7 @@ resource "aws_security_group" "aiml_security_group" {
 resource "aws_instance" "aiml_instance" {
   ami           = "ami-053b0d53c279acc90"
   instance_type = "t3.micro"
-  key_name      = "temporary_key"
+  key_name      = "${aws_key_pair.aiml_key.id}"
   security_groups = [aws_security_group.aiml_security_group.name]
   user_data = <<-EOF
               #!/bin/bash
@@ -100,4 +100,9 @@ resource "aws_instance" "aiml_instance" {
   tags = {
     Name = "PracticeTestingAIML"
   }
+}
+
+resource "aws_key_pair" "aiml_key" {
+  key_name = "aimlkey"
+  public_key = file(var.public_key_path)
 }
