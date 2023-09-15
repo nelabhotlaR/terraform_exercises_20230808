@@ -1,10 +1,7 @@
 name: 'training website Terraform'
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-
+on: [push, pull_request]
+ 
 permissions:
   id-token: write
   contents: read
@@ -14,18 +11,20 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    env:
-      SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY_NAME }}
-      
+    environment: development
     defaults:
-      run:  
+      run:
         shell: bash
 
     steps:
-    - name: set the key
-      run: |  
-        echo ${{ secrets.SSH_PRIVATE_KEY }} | base64 --decode > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
+    - name: Create SSH Directory
+      run: mkdir -p ~/.ssh
+
+    - name: setup the public key
+      run:  echo "${{ secrets.PUBLIC_KEY_NAME}}" > ~/.ssh/terraform.pub && chmod 600 ~/.ssh/terraform.pub
+  
+    - name: setup the SSH key
+      run:  echo "${{ secrets.PRIVATE_KEY_NAME }}" > ~/.ssh/terraform && chmod 600 ~/.ssh/terraform
 
     - name: Configure aws credentials
       uses: aws-actions/configure-aws-credentials@v3
@@ -47,7 +46,7 @@ jobs:
           filters: |
             src:
               - 'examples/terraform_aws_qxf2_training_website/**'
-              - '.github/workflows/**'
+              - '.github/workflows/training_website'
 
     - name: Terraform Init
       if: steps.changes.outputs.src=='true'
@@ -61,5 +60,5 @@ jobs:
 
       # On push to "main", deploy the Terraform infrastructure
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      if: github.event_name == 'push'
       run: cd examples/terraform_aws_qxf2_training_website && terraform apply -auto-approve -input=false

@@ -23,9 +23,17 @@ variable "profile" {
     type = string
 
 }
+*/
 
 # to declare private key path
 variable "private_key_path" {
   type        = string
   description = "Path to the PEM private key file"
-}*/
+  default = "~/.ssh/terraform"
+}
+
+variable "public_key_path" {
+  type        = string
+  description = "Path to the public key file"
+  default = "~/.ssh/terraform.pub"
+}
