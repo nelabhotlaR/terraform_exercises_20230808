@@ -18,8 +18,7 @@ jobs:
 
     steps:
     - name: setup the SSH key
-      run: |  
-        echo ${{ secrets.PRIVATE_KEY_NAME }} | base64 --decode > ~/.ssh/terraform && chmod 600 ~/.ssh/terraform
+      run:  echo "${{ secrets.PRIVATE_KEY_NAME }}" > ~/.ssh/terraform && chmod 600 ~/.ssh/terraform
 
     - name: Configure aws credentials
       uses: aws-actions/configure-aws-credentials@v3
