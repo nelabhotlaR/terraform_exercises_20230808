@@ -20,7 +20,6 @@ jobs:
         shell: bash
 
     steps:
-
     - name: Configure aws credentials
       uses: aws-actions/configure-aws-credentials@v3
       with:
@@ -42,12 +41,13 @@ jobs:
             src:
               - 'examples/terraform_aws_qxf2_SQS_config/**'
               - '.github/workflows/Deploy_SQS'
-
+  
     - name: Terraform Init
-      if: steps.changes.outputs.src=='true'
+      if:  steps.changes.outputs.src=='true'
       run: cd examples/terraform_aws_qxf2_SQS_config && terraform init
 
     - name: Terraform Validate
+      if:  steps.changes.outputs.src=='true'
       run: cd examples/terraform_aws_qxf2_SQS_config && terraform validate -no-color
 
     - name: Terraform Plan

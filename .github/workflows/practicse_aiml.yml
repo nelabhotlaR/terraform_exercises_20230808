@@ -50,9 +50,11 @@ jobs:
       run: cd examples/terraform_aws_qxf2_practice_aiml_app && terraform init
 
     - name: Terraform Validate
+      if: steps.changes.outputs.src=='true'
       run: cd examples/terraform_aws_qxf2_practice_aiml_app && terraform validate -no-color
 
     - name: Terraform Plan
+      if: steps.changes.outputs.src=='true'
       run: cd examples/terraform_aws_qxf2_practice_aiml_app && terraform plan -input=false
 
       # On push to "main", deploy the Terraform infrastructure
