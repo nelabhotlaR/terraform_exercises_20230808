@@ -40,7 +40,7 @@ jobs:
           filters: |
             src:
               - 'examples/terraform_aws_qxf2_s3_bucket_rag/**'
-              - '.github/workflows/**'
+              - '.github/workflows/s3_terraform'
               - 'templates/**'
 
     - name: Terraform Init
