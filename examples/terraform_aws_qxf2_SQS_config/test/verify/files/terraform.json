@@ -1,0 +1,7 @@
+{
+  "queue_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": ""
+  }
+}

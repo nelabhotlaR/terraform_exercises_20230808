@@ -1,10 +1,10 @@
-name: 's3 Terraform'
+name: 'Deploy SQS Terraform'
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
-
+ 
 permissions:
   id-token: write
   contents: read
@@ -35,27 +35,25 @@ jobs:
         terraform_version: 1.5.6
     
     - uses: dorny/paths-filter@v2
-      id: changes
+      id: changesf
       with: 
           filters: |
             src:
-              - 'examples/terraform_aws_qxf2_s3_bucket_rag/**'
-              - '.github/workflows/s3_terraform'
-              - 'templates/**'
-
+              - 'examples/terraform_aws_qxf2_SQS_config/**'
+              - '.github/workflows/Deploy_SQS'
+  
     - name: Terraform Init
-      if: steps.changes.outputs.src=='true'
-      run: cd examples/terraform_aws_qxf2_s3_bucket_rag && terraform init -upgrade
+      if:  steps.changes.outputs.src=='true'
+      run: cd examples/terraform_aws_qxf2_SQS_config && terraform init
 
     - name: Terraform Validate
-      if: steps.changes.outputs.src=='true'
-      run: cd examples/terraform_aws_qxf2_s3_bucket_rag && terraform validate -no-color
+      if:  steps.changes.outputs.src=='true'
+      run: cd examples/terraform_aws_qxf2_SQS_config && terraform validate -no-color
 
     - name: Terraform Plan
-      if: steps.changes.outputs.src=='true'
-      run: cd examples/terraform_aws_qxf2_s3_bucket_rag && terraform plan -input=false
+      run: cd examples/terraform_aws_qxf2_SQS_config && terraform plan -input=false
 
       # On push to "main", deploy the Terraform infrastructure
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: cd examples/terraform_aws_qxf2_s3_bucket_rag && terraform apply -auto-approve -input=false
+      run: cd examples/terraform_aws_qxf2_SQS_config && terraform apply -auto-approve -input=false
