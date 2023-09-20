@@ -33,8 +33,18 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.5.6
+    
+    - uses: dorny/paths-filters@v2
+      id: checks
+      with:
+        filters: |
+           src:
+            - '.github/workflows/Deploy_SQS.yml'
 
-    - name: comingout from .github
+    - name: present working directory
+      run: pwd
+    
+    - name: coming out from .github directory
       run: cd ..
 
     - uses: dorny/paths-filter@v2
