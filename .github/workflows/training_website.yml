@@ -39,6 +39,8 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.5.6
+    - name: comingout from .github directory
+      run:  pwd && cd ..
     
     - uses: dorny/paths-filter@v2
       id: changes
@@ -46,7 +48,6 @@ jobs:
           filters: |
             src:
               - 'examples/terraform_aws_qxf2_training_website/**'
-              - '.github/workflows/training_website'
 
     - name: Terraform Init
       if: steps.changes.outputs.src=='true'

@@ -2,7 +2,7 @@
 variable "queue_name" {
   description = "Name of the SQS queue"
   type        = string
-  default     = "qxf2-test-queue"
+  default     = "qxf2-testqueue"
 }
 
 variable "AWS_REGION" {
