@@ -46,16 +46,16 @@ jobs:
   
     - name: Terraform Init
       if: steps.changes.outputs.src=='true'
-      run: cd examples/terraform_aws_qxf2_practice_aiml_app && terraform init
+      run: cd examples/terraform_aws_qxf2_SQS_config && terraform init
     
     - name: Terraform Validate
       if: steps.changes.outputs.src=='true'
-      run: cd examples/terraform_aws_qxf2_practice_aiml_app && terraform validate -no-color
+      run: cd examples/terraform_aws_qxf2_SQS_config && terraform validate -no-color
     - name: Terraform Plan
       if: steps.changes.outputs.src=='true'
-      run: cd examples/terraform_aws_qxf2_practice_aiml_app && terraform plan -input=false
+      run: cd examples/terraform_aws_qxf2_SQS_config && terraform plan -input=false
 
       # On push to "main", deploy the Terraform infrastructure
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: cd examples/terraform_aws_qxf2_practice_aiml_app && terraform apply -auto-approve -input=false
+      run: cd examples/terraform_aws_qxf2_SQS_config && terraform apply -auto-approve -input=false
