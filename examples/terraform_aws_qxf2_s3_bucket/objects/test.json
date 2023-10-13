@@ -1,0 +1,4 @@
+{
+    "name" : "test.json",
+    "description" : "test object to be loaded into the s3 bucket created using terraform"
+}

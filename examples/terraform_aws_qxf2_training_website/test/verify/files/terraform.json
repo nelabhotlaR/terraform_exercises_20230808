@@ -1,0 +1,17 @@
+{
+  "instance_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": ""
+  },
+  "instance_publicdns": {
+    "sensitive": false,
+    "type": "string",
+    "value": ""
+  },
+  "instance_publicip": {
+    "sensitive": false,
+    "type": "string",
+    "value": ""
+  }
+}
