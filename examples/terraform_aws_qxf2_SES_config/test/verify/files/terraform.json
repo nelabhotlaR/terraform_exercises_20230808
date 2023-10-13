@@ -1,0 +1,12 @@
+{
+  "aws_ses_receipt_rule_set_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "default-rule-set"
+  },
+  "ses_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:ses:us-east-1:064238024635:identity/test-resource-ses.com"
+  }
+}
