@@ -1,0 +1,61 @@
+name: 'Deploy SES Terraform'
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: read
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: development
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v3
+      with:
+        role-to-assume: arn:aws:iam::120666943157:role/github_workflow_terraform
+        aws-region: us-east-1
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.5.6
+
+    - name: comingout from .github
+      run: cd ..
+
+    - uses: dorny/paths-filter@v2
+      id: changes
+      with:
+          filters: |
+            src:
+              - 'examples/terraform_aws_qxf2_SES_config/**'
+  
+    - name: Terraform Init
+      if: steps.changes.outputs.src=='true'
+      run: cd examples/terraform_aws_qxf2_SES_config && terraform init
+    
+    - name: Terraform Validate
+      if: steps.changes.outputs.src=='true'
+      run: cd examples/terraform_aws_qxf2_SES_config && terraform validate -no-color
+    - name: Terraform Plan
+      if: steps.changes.outputs.src=='true'
+      run: cd examples/terraform_aws_qxf2_SES_config && terraform plan -input=false
+
+      # On push to "main", deploy the Terraform infrastructure
+    - name: Terraform Apply
+      if: steps.changes.outputs.src=='true' && github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: cd examples/terraform_aws_qxf2_SES_config && terraform apply -auto-approve -input=false

@@ -1,4 +1,4 @@
-
+/*
 variable "AWS_ACCESS_KEY_ID" {
   description = "AWS access key"
   type        = string
@@ -10,6 +10,7 @@ variable "AWS_SECRET_ACCESS_KEY" {
   type        = string
   default     = "secret-access-key"
 }
+*/
 
 variable "domain_name" {
   type    = string
