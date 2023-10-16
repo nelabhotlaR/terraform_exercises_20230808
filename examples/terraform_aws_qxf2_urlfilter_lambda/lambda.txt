@@ -1,2 +1,0 @@
-
-Deploying urlfilter Lambda using Terraform
