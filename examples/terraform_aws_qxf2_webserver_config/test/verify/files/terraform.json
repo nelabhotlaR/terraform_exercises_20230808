@@ -1,0 +1,17 @@
+{
+  "dns": {
+    "sensitive": false,
+    "type": "string",
+    "value": "ec2-3-110-214-230.ap-south-1.compute.amazonaws.com"
+  },
+  "instance_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "i-0ac9aa4612a871cb2"
+  },
+  "public_ip": {
+    "sensitive": false,
+    "type": "string",
+    "value": "3.110.214.230"
+  }
+}
